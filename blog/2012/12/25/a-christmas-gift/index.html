@@ -5,13 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Derek Watson</title>
+  <title>A Christmas Gift - Derek Watson</title>
   <meta name="author" content="Derek Watson">
 
   
-  <meta name="description" content="In moving a relatively large table from MySQL to Redis,
-you may find that extracting, transforming and loading a row at a time
-can be excruciatingly &hellip;">
+  <meta name="description" content="As a Christmas gift to myself, I&#8217;ve decided to resurrect my dcw.ca domain and
+put up a simple blog, a place to share some of the more &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -20,7 +19,7 @@ can be excruciatingly &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://derek-watson.github.com/">
+  <link rel="canonical" href="http://derek-watson.github.com/blog/2012/12/25/a-christmas-gift/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -76,115 +75,12 @@ can be excruciatingly &hellip;">
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2013/01/02/mysql-to-redis-in-one-step/">MySQL to Redis in One Step</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-01-02T15:26:00-05:00" pubdate data-updated="true">Jan 2<span>nd</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>In moving a relatively large table from MySQL to Redis,
-you may find that extracting, transforming and loading a row at a time
-can be excruciatingly slow. Here&#8217;s a quick trick you can use that pipes the output
-of the <code>mysql</code> command directly to <code>redis-cli</code>, bypassing middleware and
-allowing both data stores to operate at their peak speed.</p>
-
-<p>Using this technique I was able to reduce my load time of ~8 million rows
-from 90 minutes down to two. Shabby? I think not.</p>
-
-<h3>Redis Protocol Output from MySQL</h3>
-
-<p><code>redis-cli</code> has a <a href="http://redis.io/topics/mass-insert">mass-insert</a> mode, specially
-designed to execute bulk commands as quickly as possible. Input is expected to
-be formatted in raw <a href="http://redis.io/topics/protocol">redis protocol</a>,
-which is simple enough to be generated from MySQL SELECT queries. Here we go!</p>
-
-<p>My stats table:</p>
-
-<pre><code>CREATE TABLE events_all_time (
-  id int(11) unsigned NOT NULL AUTO_INCREMENT,
-  action varchar(255) NOT NULL,
-  count int(11) NOT NULL DEFAULT 0,
-  PRIMARY KEY (id),
-  UNIQUE KEY uniq_action (action)
-);
-</code></pre>
-
-<p>Desired Redis command to be run for each row:</p>
-
-<pre><code>HSET events_all_time [action] [count]
-</code></pre>
-
-<p>SQL statement to produce Redis-protocol-formatted output:</p>
-
-<pre><code>-- events_to_redis.sql
-
-SELECT CONCAT(
-  "*4\r\n",
-  '$', LENGTH(redis_cmd), '\r\n',
-  redis_cmd, '\r\n',
-  '$', LENGTH(redis_key), '\r\n',
-  redis_key, '\r\n',
-  '$', LENGTH(hkey), '\r\n',
-  hkey, '\r\n',
-  '$', LENGTH(hval), '\r\n',
-  hval, '\r'
-)
-FROM (
-  SELECT
-  'HSET' as redis_cmd,
-  'events_all_time' AS redis_key,
-  action AS hkey,
-  count AS hval
-  FROM events_all_time
-) AS t
-</code></pre>
-
-<p>Tying it all together:</p>
-
-<pre><code>mysql stats_db --skip-column-names --raw &lt; events_to_redis.sql | redis-cli --pipe
-</code></pre>
-
-<p>It&#8217;s important to use the <code>--raw</code> switch so that MySQL doesn&#8217;t rewrite the
-crucial newline characters, and <code>--skip-column-names</code> keeps the formatted output
-clear of column headers.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/12/25/a-christmas-gift/">A Christmas Gift</a></h1>
+      <h1 class="entry-title">A Christmas Gift</h1>
     
     
       <p class="meta">
@@ -207,7 +103,7 @@ clear of column headers.</p>
   </header>
 
 
-  <div class="entry-content"><p>As a Christmas gift to myself, I&#8217;ve decided to resurrect my dcw.ca domain and
+<div class="entry-content"><p>As a Christmas gift to myself, I&#8217;ve decided to resurrect my dcw.ca domain and
 put up a simple blog, a place to share some of the more interesting
 aspects of my job as a software developer at <a href="http://www.theworkinggroup.ca/">The Working Group</a>,
 and possibly some random ramblings that need a place to be.</p>
@@ -226,18 +122,59 @@ usability will need to improve before they appeal to non-developers. Common UI
 metaphors such as Save and Revert could help to simplify Git&#8217;s notoriously
 complex command-line interface, at the very least.</p>
 </div>
+
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Derek Watson</span></span>
+
+      
+
+
+
+
+
+
+
+
   
 
 
-    </article>
+<time datetime="2012-12-25T23:34:00-05:00" pubdate data-updated="true">Dec 25<span>th</span>, 2012</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
   
-  <div class="pagination">
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://derek-watson.github.com/blog/2012/12/25/a-christmas-gift/" data-via="derek_watson" data-counturl="http://derek-watson.github.com/blog/2012/12/25/a-christmas-gift/" >Tweet</a>
+  
+  
+  
 </div>
+
+    
+    <p class="meta">
+      
+      
+        <a class="basic-alignment right" href="/blog/2013/01/02/mysql-to-redis-in-one-step/" title="Next Post: MySQL to Redis in One Step">MySQL to Redis in One Step &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
 <aside class="sidebar">
   
     <section>
@@ -258,7 +195,7 @@ complex command-line interface, at the very least.</p>
 <section>
   <h1>GitHub Repos</h1>
   <ul id="gh_repos">
-    <li class="loading">Status updating&#8230;</li>
+    <li class="loading">Status updating...</li>
   </ul>
   
   <a href="https://github.com/derek-watson">@derek-watson</a> on GitHub
@@ -288,7 +225,7 @@ complex command-line interface, at the very least.</p>
 <section>
   <h1>Latest Tweets</h1>
   <ul id="tweets">
-    <li class="loading">Status updating&#8230;</li>
+    <li class="loading">Status updating...</li>
   </ul>
   <script type="text/javascript">
     $.domReady(function(){
@@ -308,6 +245,7 @@ complex command-line interface, at the very least.</p>
   
 </aside>
 
+
     </div>
   </div>
   <footer role="contentinfo"><p>
@@ -322,7 +260,10 @@ complex command-line interface, at the very least.</p>
       var disqus_shortname = 'derekwatson';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://derek-watson.github.com/blog/2012/12/25/a-christmas-gift/';
+        var disqus_url = 'http://derek-watson.github.com/blog/2012/12/25/a-christmas-gift/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
