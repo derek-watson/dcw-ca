@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Derek Watson]]></title>
-  <link href="http://derek-watson.github.com/atom.xml" rel="self"/>
-  <link href="http://derek-watson.github.com/"/>
-  <updated>2013-01-04T09:15:50-05:00</updated>
-  <id>http://derek-watson.github.com/</id>
+  <link href="http://dcw.ca/atom.xml" rel="self"/>
+  <link href="http://dcw.ca/"/>
+  <updated>2013-01-04T09:28:40-05:00</updated>
+  <id>http://dcw.ca/</id>
   <author>
     <name><![CDATA[Derek Watson]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[MySQL to Redis in One Step]]></title>
-    <link href="http://derek-watson.github.com/blog/2013/01/02/mysql-to-redis-in-one-step/"/>
+    <link href="http://dcw.ca/blog/2013/01/02/mysql-to-redis-in-one-step/"/>
     <updated>2013-01-02T15:26:00-05:00</updated>
-    <id>http://derek-watson.github.com/blog/2013/01/02/mysql-to-redis-in-one-step</id>
+    <id>http://dcw.ca/blog/2013/01/02/mysql-to-redis-in-one-step</id>
     <content type="html"><![CDATA[<p>In moving a relatively large table from MySQL to Redis,
 you may find that extracting, transforming and loading a row at a time
 can be excruciatingly slow. Here&#8217;s a quick trick you can use that pipes the output
@@ -88,9 +88,9 @@ clear of column headers.</p>
   
   <entry>
     <title type="html"><![CDATA[A Christmas Gift]]></title>
-    <link href="http://derek-watson.github.com/blog/2012/12/25/a-christmas-gift/"/>
+    <link href="http://dcw.ca/blog/2012/12/25/a-christmas-gift/"/>
     <updated>2012-12-25T23:34:00-05:00</updated>
-    <id>http://derek-watson.github.com/blog/2012/12/25/a-christmas-gift</id>
+    <id>http://dcw.ca/blog/2012/12/25/a-christmas-gift</id>
     <content type="html"><![CDATA[<p>As a Christmas gift to myself, I&#8217;ve decided to resurrect my dcw.ca domain and
 put up a simple blog, a place to share some of the more interesting
 aspects of my job as a software developer at <a href="http://www.theworkinggroup.ca/">The Working Group</a>,
