@@ -4,7 +4,7 @@
   <title><![CDATA[Derek Watson]]></title>
   <link href="http://dcw.ca/atom.xml" rel="self"/>
   <link href="http://dcw.ca/"/>
-  <updated>2013-01-04T09:51:51-05:00</updated>
+  <updated>2013-01-06T20:53:14-05:00</updated>
   <id>http://dcw.ca/</id>
   <author>
     <name><![CDATA[Derek Watson]]></name>
@@ -12,6 +12,24 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Free DNS Hosting from Rackspace]]></title>
+    <link href="http://dcw.ca/blog/2013/01/06/free-dns-hosting-from-rackspace/"/>
+    <updated>2013-01-06T18:00:00-05:00</updated>
+    <id>http://dcw.ca/blog/2013/01/06/free-dns-hosting-from-rackspace</id>
+    <content type="html"><![CDATA[<p>If you&#8217;re looking for a free but trustworthy DNS host, take a look at
+<a href="http://www.rackspace.com/cloud/dns/">Rackspace Cloud DNS</a>.
+From their website:</p>
+
+<blockquote><p>Best part… it’s free!
+That’s right, there is no cost for using Rackspace Cloud DNS! Existing Cloud Servers™, Cloud Sites™, and RackConnect® customers have access to Rackspace Cloud DNS automatically, by default.</p></blockquote>
+
+<p>When they say <em>customers</em>, they really mean anyone with a free <a href="https://cart.rackspace.com/cloud/">Cloud Account</a>.</p>
+
+<p>Nice price!</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[MySQL to Redis in One Step]]></title>
